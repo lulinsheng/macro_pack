@@ -185,16 +185,16 @@ class TemplateFactory(MpModule):
         paramArray = [MPParam("Command line parameters",optional=True)]  
         self.fillInputParams2(paramArray)
         # generate random file name
-        fileName = utils.randomAlpha(7)  + os.path.splitext(self.mpSession.embeddedFilePath)[1]
+        # fileName = utils.randomAlpha(7)  + os.path.splitext(self.mpSession.embeddedFilePath)[1]
        
-        logging.info("   [-] File extraction path: %%temp%%\\%s" % fileName)
+        # logging.info("   [-] File extraction path: %%temp%%\\%s" % fileName)
 
         # Add required functions
         self.addVBLib(vbLib.WscriptExec)
         self.addVBLib(vbLib.WmiExec )
         self.addVBLib(vbLib.ExecuteCMDAsync )
         content = vbLib.templates.EMBED_EXE
-        content = content.replace("<<<FILE_NAME>>>", fileName)
+        # content = content.replace("<<<FILE_NAME>>>", fileName)
         if getParamValue(paramArray, "Command line parameters") != "":
             content = content.replace("<<<PARAMETERS>>>"," & \" %s\"" % getParamValue(paramArray, "Command line parameters"))
         else:

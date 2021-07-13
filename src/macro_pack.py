@@ -329,8 +329,8 @@ def main(argv):
 
 if __name__ == '__main__':
     # check if running from explorer, if yes restart from cmd line
-    running_from = psutil.Process(os.getpid()).parent().parent().name()
-    if running_from == 'explorer.exe':
-        os.system("cmd.exe /k \"%s\"" % utils.getRunningApp())
+    # running_from = psutil.Process(os.getpid()).parent().parent().name()
+    # if running_from == 'explorer.exe':
+    #     os.system("cmd.exe /k \"%s\"" % utils.getRunningApp())
     # PyArmor Plugin: checkPlug()
     main(sys.argv[1:])

